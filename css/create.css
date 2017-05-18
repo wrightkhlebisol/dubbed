@@ -1,0 +1,121 @@
+#signupsection{
+	width: 100%;
+	background-color: rgb(19, 80, 24);
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+	color: white;
+	text-shadow: 2px 2px 2px black;
+	font-size: 1.4em;
+	box-shadow: 1px 1px 9px rgba(102, 153, 102, 1);
+}
+
+#signupsection h1{
+	margin: 10px;
+	text-align: center;
+}
+
+.signupforminput{
+	width: 95%;
+	border-radius: 0.4em;
+	background-color: #f4f4f4;
+	padding-left: 7%;
+	height: 3em;
+	color: black;
+	margin: 5px 0px;
+	box-shadow: 1px 1px 15px white;
+}
+
+.signupforminput:focus{
+	background-color: yellow;
+	border: 4px solid pink;
+}
+
+#fileupload{
+	height: 50px;
+	width: 70%;
+	color: blue;
+	background-color: pink;
+	padding: 10px 50px;
+}
+
+.form-input::before{
+	position: absolute;
+	font-family: "FontAwesome";
+	font-size: 25px;
+	color: #669966;
+	padding-left: 14px;
+	padding-top: 12px;
+	text-shadow: 2px 2px 5px white;
+}
+
+.form-input:nth-child(2)::before{
+	 content: "\f06c";
+	 font-size: 25px;
+	 padding-left: 9px;
+}
+
+.form-input:nth-child(3)::before{
+	 content: "\f0e8";
+}
+
+.form-input:nth-child(5)::before{
+	content: "\f093";
+}
+
+.form-input:nth-child(7)::before{
+	content: "\f274";
+}
+
+.form-input:nth-child(9)::before{
+	 content: "\f098";
+}
+
+legend{
+	background-color: black;
+	border-radius: 5px;
+}
+
+.createbutton{
+	width: 30%;
+	border-right: 3px solid pink;
+	border-bottom: 3px solid pink;
+	border-radius: 0.4em;
+	background-color: green;
+	height: 4em;
+	margin: 15px;
+	font-weight: 700;
+	color: white;
+	text-shadow: 4px 4px 20px white;
+	box-shadow: 1px 1px 20px white;
+}
+
+.createbutton:hover{
+	background-color: gold;
+	text-shadow: 1px 1px 5px white;
+	color: red;
+	transition: .5s ease;
+	-webkit-transition: .5s ease;
+}
+
+legend{
+	margin: 20px auto;
+	position: relative;
+	top: 10px;
+}
+
+textarea[name="moreinfo"]{
+	height: 100px;
+	width: 80%; 
+	padding-top: 5px;
+}
+
+textarea[name="moreinfo"]::before{
+	content: "\f098";
+}
+
+.alertMessages{
+	color: red;
+	font-size: 110%;
+	text-shadow: -1px 0px 0px yellow;
+}

@@ -1,0 +1,89 @@
+.signupforminput{
+	border-radius: 0.4em;
+	background-color: #f4f4f4;
+	padding-left: 7%;
+	height: 3em;
+	width: 80%;
+	color: black;
+	margin: 5px auto;
+}
+
+.signupforminput:focus{
+	background-color: yellow;
+}
+
+#signupsection{
+	width: 100%;
+	background-color: rgb(19, 80, 24);
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+	color: white;
+	text-shadow: 2px 2px 2px black;
+}
+
+#signupsection input[type="submit"]{
+	background-color: rgba(102, 153, 102, 1);
+	width: 50%;
+	color: black;
+	padding-left: 0px;
+	margin-top: 10px;
+	border: 2px solid rgb(204, 204, 153);
+	font-size: 1.2em;
+	font-weight: bold;
+	box-shadow: 1px 1px 20px white;
+}
+
+#signupsection input[type="submit"]:hover{
+	background-color: rgb(204, 204, 153);
+	border: 2px solid pink;
+	color: black;
+}
+
+#signupsection h1{
+	margin: 10px;
+}
+
+form{
+	/*margin: 50%;
+	/*width: 100%;*/
+}
+
+.form-input::before{
+	content: "\f1fa";
+	position: absolute;
+	font-family: "FontAwesome";
+	font-size: 25px;
+	color: #669966;
+	padding-left: 14px;
+	padding-top: 12px;
+	text-shadow: 2px 2px 5px white;
+}
+
+.form-input:nth-child(2)::before{
+	 content: "\f19d";
+	 font-size: 25px;
+	 padding-left: 9px;
+}
+
+.form-input:nth-child(3)::before{
+	content: "\f023";
+}
+
+.form-input:nth-child(4)::before{
+	content: "\f023";
+}
+
+.form-input:nth-child(5)::before{
+	content: "\f007";
+}
+
+h1#notice{
+	color: yellow;
+	text-shadow: 1px 1px 1px red;
+	font-weight: normal;
+	background-color: grey;
+	border: 1px solid red;
+	padding: 10px 10px;
+	text-align: left;
+}

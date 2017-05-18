@@ -1,0 +1,103 @@
+.scribblehorzrule{
+	background-color: rgba(210, 210, 210, .3);
+	width: 100%;
+	margin: 1% 0% 1% 0%;
+	height: .15em;
+	float: left;
+}
+
+.mainsectionscribblecontentTimestamp{
+	position: relative;
+	left: 90%;
+	width: 7em;
+}
+
+.mainsectionscribbleContent section{
+	display: table;
+	border: 10px;
+	width: 100%;
+	box-shadow: 1px 1px 20px grey;
+	margin: 12px 0px; 
+
+}
+
+.head{
+	text-transform: uppercase;
+	font-weight: bold;
+	background-color: rgba(204, 204, 204, .5);
+	height: 20px;
+}
+
+.mainsectionscribbleContent article{
+	display: table-row;
+	background-color: #EFEFEF;
+	text-align: center;
+	margin: 3% 1%;
+	margin-bottom: 2%;
+	padding: 1%;
+	box-shadow: 0 3px 1px rgba(102, 153, 102, 0.3);
+	font-size: .9em;
+}
+
+.mainsectionscribbleContent article:hover{
+	box-shadow: 0 3px 1px rgba(204, 204, 204, 1);
+	margin: 2% 0%;
+}
+
+.mainsectionscribbleContent article:nth-child(2n+1){
+	background-color: rgba(204, 204, 204, 0.9);
+	color: black;
+}
+
+.mainsectionscribbleContent-tableColumn{
+	display: table-cell;
+	width: 25%;
+	padding: 10px;
+}
+
+.mainsectionscribbleContent-tableColumn:hover{
+	box-shadow: 1px 1px 10px green;
+}
+
+.mainsectionscribbleContent article:first-child{
+	background-color: black;
+	color: white;
+}
+
+.mainsectionscribbleContent-tableColumn a{
+	font-size: 1em;
+	text-decoration: none;
+}
+
+#create{
+	border-bottom: 2px solid green;
+	border-left: 2px solid green;
+	border-radius: 3px;
+	height: 2.3em;
+	width: 11.5%;
+	margin-bottom: 5px; 
+	color: black;
+	float: right;
+	text-shadow: 1px 1px 1px white;
+}
+
+#create:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.loginMessage{
+	color: white;
+	font-size: .6em;
+	position: relative;
+	top: -22px;
+	left: -50px;
+}
+
+.alertMessage{
+	display: inline;
+	color: white;
+	position: relative;
+	left: 60%;
+	font-size: large;
+}
