@@ -41,6 +41,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>MODUB SCRIBBLE | A gathering of intellects helping intellects </title>
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="MobileOptimized" content="320" />
 	<meta name="viewport" content="width=device-width initial-scale=1">
 	<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
 	<!--<script src="https://use.fontawesome.com/0e68ce4411.js"></script>-->

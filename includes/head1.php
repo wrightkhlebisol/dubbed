@@ -8,6 +8,7 @@
 	<meta charset="UTF-8">
 	<meta name="HandheldFriendly" content="true">
 	<meta name="MobileOptimized" content="320">
+	<meta name="Viewport" content="width=device-width">
 	<script src="https://use.fontawesome.com/0e68ce4411.js"></script>
 	<link rel="icon" href="../images/dublogocut.png">
 	<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
