@@ -118,4 +118,5 @@ textarea[name="moreinfo"]::before{
 	color: red;
 	font-size: 110%;
 	text-shadow: -1px 0px 0px yellow;
+	background-color: white;
 }

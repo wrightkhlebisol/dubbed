@@ -51,7 +51,8 @@
 							</ul>
 							<a href="" class="remain">10 REMAINING</a>
 					</div>
-				</div>
+				</div><!--End of viewcontainer-->
+				<button class="solnButton"><a href="create.php?soln">Solve This (+3pts) </a></button>
 				<hr>
 				<br>
 				<div id="moreDetail">

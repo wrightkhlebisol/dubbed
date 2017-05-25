@@ -68,5 +68,56 @@
 		if(isset($input)){
 			echo $input;
 		}
+	}
+
+	function createContent($uploadlocation){
+		global $connection;
+		define("PERMUPLOADDIR", $uploadlocation);
+		if(isset($_POST['submit'])){
+			if (!empty($_FILES['fileupload']) && !empty($_POST['topic']) && isset($_POST['topic'])) {
+				$file_temp_name = $_FILES['fileupload']['tmp_name'];
+				$file_error = $_FILES['fileupload']['error'];
+				$file_type = $_FILES['fileupload']['type'];
+				$file_size = $_FILES['fileupload']['size'];
+				
+
+				$topic = mysqli_prep($_POST['topic']);
+				$category = mysqli_prep($_POST['category']);
+				$explodedFileType = explode('/', $file_type);
+				if (array_key_exists(1, $explodedFileType)) {			
+					$file_name = $_FILES['fileupload']['name'] = $category . '_' . $topic . '.' . $explodedFileType[1];
+				}
+				$deadline = mysqli_prep($_POST['deadline']);
+				$mobile = mysqli_prep($_POST['mobilenumber']);
+				$moreinfo = mysqli_prep($_POST['moreinfo']);
+				$uploader = mysqli_prep($_SESSION["id"]);
+				
+				if (!empty($_POST['mobilenumber']) && isset($mobile)) {
+					$query0 = "UPDATE users SET mobile = '$mobile' WHERE id = '$uploader'"; 
+					$result0 = mysqli_query($connection, $query0) or die("Couldn't update users table ". mysqli_error($connection));
+				}
+				
+				if (isset($file_name)) {
+					$moveResult = move_uploaded_file($file_temp_name, PERMUPLOADDIR."/".$file_name);
+					if($moveResult == 1){
+						$query1 = "INSERT INTO file(topic, category, deadline, more_info, file_name, uploader_id, file_type, file_size)"; 
+						$query1 .= " VALUES ('$topic', '$category', '$deadline', '$moreinfo', '$file_name', '$uploader', '$file_type', '$file_size')";
+						$result1 = mysqli_query($connection, $query1);
+						if (!$result1) {
+							die("Database insert failed " . mysqli_error($connection));
+						}else{
+							header("Location: ../index.php?dins=1");
+						}
+					}else{
+						echo "<p class=\"alertMessages\">There was a problem uploading the file</p>";
+					}
+				}else{
+					echo "<p class=\"alertMessages\">Please pick a File</p>";
+				}	
+			}else{
+				echo "<p class=\"alertMessages\">Some fields are empty</p>";
+			}
+		}
 	} 
+
 ?>

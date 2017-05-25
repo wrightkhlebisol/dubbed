@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>MODUB | A gathering of intellects helping intellects </title>
+	<title>MODUB | A gathering of intellects helping intellects</title>
 	<meta charset="UTF-8">
 	<meta name="HandheldFriendly" content="true">
 	<meta name="MobileOptimized" content="320">

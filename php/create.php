@@ -6,49 +6,19 @@
 	if(!isset($_SESSION["loggedIn"])){
 		redirect();
 	}
+	if (isset($_GET["soln"])) {
+		
+	}
 ?>
 <link rel="stylesheet" type="text/css" href="../css/create.css">
+<script type="text/javascript"></script>
 <?php require_once("../includes/head2.php") ?>
 
 <div id="signupsection">
 	<h1>Its as simple as A, B, C.</h1>
 
-<?php
-define("PERMUPLOADDIR", 'C:\wamp\www\dubbed\upload');
-if(isset($_POST['submit'])){
-	$file_temp_name = $_FILES['fileupload']['tmp_name'];
-	$file_error = $_FILES['fileupload']['error'];
-	$file_type = $_FILES['fileupload']['type'];
-	$file_size = $_FILES['fileupload']['size'];
+<?php createContent('C:\wamp\www\dubbed\upload'); ?>
 
-	$topic = mysqli_prep($_POST['topic']);
-	$category = mysqli_prep($_POST['category']);
-	$explodedFileType = explode('/', $file_type);
-	$file_name = $_FILES['fileupload']['name'] = $category . '_' . $topic . '.' . $explodedFileType[1];
-	$deadline = mysqli_prep($_POST['deadline']);
-	$mobile = mysqli_prep($_POST['mobilenumber']);
-	$moreinfo = mysqli_prep($_POST['moreinfo']);
-	$uploader = mysqli_prep($_SESSION["id"]);
-
-		$moveResult = move_uploaded_file($file_temp_name, PERMUPLOADDIR."/".$file_name);
-
-		if($moveResult == 1){
-			$query = "INSERT INTO file(topic, category, deadline, more_info, file_name, uploader_id, file_type, file_size) VALUES ('$topic', '$category', '$deadline', '$moreinfo', '$file_name', '$uploader', '$file_type', '$file_size')";
-			$result = mysqli_query($connection, $query);
-			if (!$result) {
-				die("Database insert failed " . mysqli_error($connection));
-			}else{
-				header("Location: ../index.php?dins=1");
-			}
-		}else{
-			echo "<p class=\"alertMessages\">There was a problem uploading the file</p>";
-		}
-
-}
-// else{
-// 	echo NULL;
-// }
-?>
 	<form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" id="signupform" enctype="multipart/form-data">
 
 		<legend>Lil Detail About The File</legend>
@@ -60,6 +30,7 @@ if(isset($_POST['submit'])){
 		<div class="form-input">
 			<label for="filecategory">Pick A Category</label>
 			<select class="signupforminput" id="filecategory" name="category">
+				<option value="solution">Solution</option>
 				<option value="Test">Test</option>
 				<option value="Exam">Exam</option>
 				<option value="Project">Project</option>
