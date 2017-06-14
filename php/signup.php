@@ -41,7 +41,7 @@
 					<?php if(!empty($message)){ echo "<h1 id=\"notice\">" . $message . "</h1>";}else{echo "<h1>Welcome Home ! You have chosen to join an Elite community. <br> Let's set you up !</h1>";} // the message stored in message variable is displayed here?>
 					<form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" id="signupform" enctype="multipart/form-data">
 						<div class="form-input">
-							<input type="e-mail" placeholder="What is Your E-mail Address" class="signupforminput" name="email" id="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>">
+							<input type="email" placeholder="What is Your E-mail Address" class="signupforminput" name="email" id="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>">
 						</div>
 						<div class="form-input">
 							<input type="text" placeholder="Which School are You From" class="signupforminput" name="school" id="school" value="<?php if(isset($_POST['school'])) echo $_POST['school']; ?>">

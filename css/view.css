@@ -77,11 +77,8 @@
 .solnButton{
 	border: 2px solid rgba(76, 175, 80, 0.45);
 	margin: 0px 10px 10px 0px;
-	padding: 3px 1px;
 	font-size: large;	
 	border-radius: 5px;
-	width: 13%;
-	height: 3em;
 	background-color: rgba(139, 195, 74, 0.56);
 }
 
@@ -91,10 +88,9 @@
 
 .solnButton > a{
 	text-decoration: none;
-	font-size: 100%;
 	font-weight: bold;
 }
 
-.solnButton > a:hover{
+/*.solnButton > a:hover{
 	text-decoration: underline;
-}
+}*/

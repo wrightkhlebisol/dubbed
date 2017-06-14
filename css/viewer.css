@@ -1,0 +1,15 @@
+#viewpane{
+	width: 100%;
+	height: 700px;
+	float: left;
+	background-color: inherit;
+	border: 5px solid green;
+	border-radius: 5px;
+	box-shadow: 2px 2px 25px black;
+}
+
+#viewpane object{
+	width: 100%;
+	height: 100%;
+	font-size: 200%;
+}

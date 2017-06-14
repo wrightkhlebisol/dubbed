@@ -52,7 +52,7 @@
 
 	function alertMessages(){
 		if (isset($_GET["yanli"])) {
-			return $alertMessage = "<h3 id=\"notice\"><i class=\"fa fa-ban\"></i> You're not logged in jo <i class=\"fa fa-meh-o\"></i>, Please log in to use the full feature</h3>";
+			return $alertMessage = "<h3 id=\"notice\"><i class=\"fa fa-ban\"></i> You're not logged in, Please log in to use the full feature</h3>";
 		}
 
 		if (isset($_GET["lo"])) {
@@ -79,31 +79,37 @@
 				$file_error = $_FILES['fileupload']['error'];
 				$file_type = $_FILES['fileupload']['type'];
 				$file_size = $_FILES['fileupload']['size'];
-				
-
+				$file_extension = pathinfo($_FILES['fileupload']['name'], PATHINFO_EXTENSION);
 				$topic = mysqli_prep($_POST['topic']);
 				$category = mysqli_prep($_POST['category']);
-				$explodedFileType = explode('/', $file_type);
-				if (array_key_exists(1, $explodedFileType)) {			
-					$file_name = $_FILES['fileupload']['name'] = $category . '_' . $topic . '.' . $explodedFileType[1];
-				}
-				$deadline = mysqli_prep($_POST['deadline']);
+				$replacedTopic = trim(str_replace(' ', '_', $topic));			
+				$file_name = $_FILES['fileupload']['name'] = $category.'_'.$replacedTopic.'.'.$file_extension;
 				$mobile = mysqli_prep($_POST['mobilenumber']);
 				$moreinfo = mysqli_prep($_POST['moreinfo']);
 				$uploader = mysqli_prep($_SESSION["id"]);
-				
+					
 				if (!empty($_POST['mobilenumber']) && isset($mobile)) {
 					$query0 = "UPDATE users SET mobile = '$mobile' WHERE id = '$uploader'"; 
 					$result0 = mysqli_query($connection, $query0) or die("Couldn't update users table ". mysqli_error($connection));
 				}
 				
-				if (isset($file_name)) {
+				if (isset($file_name) && !empty($file_name)) {
 					$moveResult = move_uploaded_file($file_temp_name, PERMUPLOADDIR."/".$file_name);
 					if($moveResult == 1){
-						$query1 = "INSERT INTO file(topic, category, deadline, more_info, file_name, uploader_id, file_type, file_size)"; 
-						$query1 .= " VALUES ('$topic', '$category', '$deadline', '$moreinfo', '$file_name', '$uploader', '$file_type', '$file_size')";
-						$result1 = mysqli_query($connection, $query1);
-						if (!$result1) {
+						$queryCreate = "INSERT INTO file(topic, category, more_info, file_name, uploader_id, file_type, file_size)"; 
+						$queryCreate .= " VALUES ('$topic', '$category', '$moreinfo', '$file_name', '$uploader', '$file_extension', '$file_size')";
+						if(isset($_GET['soln'])){
+							$fileId = $_GET["file"];
+							$userId = $_SESSION["id"];
+							$querySoln = "INSERT INTO solution(file_id, user_id, file_name) ";
+							$querySoln .= "VALUES ($fileId, $userId, '$file_name')";
+							$resultSoln = mysqli_query($connection, $querySoln);
+							if (!$resultSoln) {
+								die("Database insert failed " . mysqli_error($connection));
+							}
+						}
+						$resultCreate = mysqli_query($connection, $queryCreate);
+						if (!$resultCreate) {
 							die("Database insert failed " . mysqli_error($connection));
 						}else{
 							header("Location: ../index.php?dins=1");
@@ -117,7 +123,10 @@
 			}else{
 				echo "<p class=\"alertMessages\">Some fields are empty</p>";
 			}
-		}
-	} 
+		}	
+	}
+
+	// function viewByType($_GET['type']){
+	// }
 
 ?>

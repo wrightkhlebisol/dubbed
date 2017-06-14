@@ -1,0 +1,10 @@
+body{
+	background-color: green;
+}
+
+.head{
+	height: 80px;
+	width: 100%;
+	background-color: black;
+	color: white;
+}

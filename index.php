@@ -2,6 +2,10 @@
 	session_start();
 	require_once("includes/connection.php");
 	require_once("functions/functions.php");
+	if (isset($_GET['type'])) {
+		$viewType = $_GET['type'];
+	}
+	
 	$loginMessage = "";
 	if(isset($_POST['header-submit'])){ 
 		if(!empty($_POST['header-email']) && !empty($_POST['header-password'])){
@@ -31,8 +35,14 @@
 
 	$alertMessage = alertMessages();
  
-	$query = "SELECT id, topic, category, deadline, solutions FROM file ORDER BY id DESC";
-	$result = mysqli_query($connection, $query);
+	$query = "SELECT id, topic, category, upload_date, solutions ";
+	$query .= "FROM file ";
+	if (isset($_GET['type'])) {
+		$query .= "WHERE category = {$viewType} ";
+	}
+	$query .= "ORDER BY id ";
+	$query .= "DESC";
+	$result = mysqli_query($connection, $query) or die("Query Execution Failed " . mysqli_error($connection));
 	
 ?>
 <!DOCTYPE html>
@@ -79,19 +89,15 @@
 
 		<div id="leftnav">
 
-			<a href="index.php"><i class="fa fa-pencil-square-o"></i>Test</a>
-			<a href="index.php"><i class="fa fa-low-vision"></i>Exam</a>
-			<a href="index.php"><i class="fa fa-binoculars"></i>Project</a>
-			<a href="index.php"><i class="fa fa-signing"></i>Assignment</a>
-			<a href="index.php"><i class="fa fa-bar-chart"></i>Reports</a>
-			<a href="index.php"><i class="fa fa-bookmark"></i>Material</a>
-			<a href="index.php"><i class="fa fa-book"></i>Notes</a>
+			<a href="index.php"><i class="fa fa-home"></i>Home</a>
+			<a href="index.php?type='test'"><i class="fa fa-pencil-square-o"></i>Test</a>
+			<a href="index.php?type='exam'"><i class="fa fa-low-vision"></i>Exam</a>
+			<a href="index.php?type='project'"><i class="fa fa-binoculars"></i>Project</a>
+			<a href="index.php?type='assignment'"><i class="fa fa-signing"></i>Assignment</a>
+			<a href="index.php?type='report'"><i class="fa fa-bar-chart"></i>Reports</a>
+			<a href="index.php?type='material'"><i class="fa fa-bookmark"></i>Material</a>
+			<a href="index.php?type='note'"><i class="fa fa-book"></i>Notes</a>
 			<?php
-			// echo time("tomorrow") . "<br>";
-			// echo time() . "<br>";
-			// $loggedInNameSplit = explode("@", $_SESSION["username"]);
-			// echo $loggedInNameSplit . "<br>";
-
 				if(isset($_SESSION["loggedIn"])){
 					echo "<p class=\"welcomeUser\">Welcome " . $_SESSION["username"] . "</p>";
 				}else{
@@ -118,12 +124,12 @@
 							<article>
 								<div class="mainsectionscribbleContent-tableColumn head"><i class="fa fa-spin fa-book"></i> Topic</div>
 								<div class="mainsectionscribbleContent-tableColumn head"><i class="fa fa-spin fa-sitemap"></i> Categories</div>
-								<div class="mainsectionscribbleContent-tableColumn head"><i class="fa fa-spin fa-clock-o"></i> TimeFrame</div>
-								<div class="mainsectionscribbleContent-tableColumn head"><i class="fa fa-spin fa-plus-square"></i> Bids</div>
+								<div class="mainsectionscribbleContent-tableColumn head"><i class="fa fa-spin fa-clock-o"></i> Date Uploaded</div>
+								<div class="mainsectionscribbleContent-tableColumn head"><i class="fa fa-spin fa-plus-square"></i> Solution</div>
 							</article>
 							<?php 
 								if(!$result){
-									die("the query was unsuccessful " . mysql_error());
+									die("the query was unsuccessful " . mysqli_error($connection));
 								}else{
 									$rows = mysqli_num_rows($result);
 									while ($rows > 0) {
@@ -131,12 +137,12 @@
 										$id = $fields['id'];
 										$topic = $fields['topic'];
 										$category = $fields['category'];
-										$timeframe = $fields['deadline'];
+										$uploadDate = $fields['upload_date'];
 										$numsolu = $fields['solutions'];// total number of solutions
 										echo "<article>
 												<div class=\"mainsectionscribbleContent-tableColumn\"><a href=\"php/view.php?fid={$id}\">$topic</a></div>
 												<div class=\"mainsectionscribbleContent-tableColumn\">$category</div>
-												<div class=\"mainsectionscribbleContent-tableColumn\">$timeframe</div>
+												<div class=\"mainsectionscribbleContent-tableColumn\">$uploadDate</div>
 												<div class=\"mainsectionscribbleContent-tableColumn\">$numsolu</div>
 											</article>";
 										$rows--;
