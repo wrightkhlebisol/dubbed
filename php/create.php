@@ -1,11 +1,11 @@
 <?php
 	session_start();
+	require_once("../functions/functions.php");	
 	if(!isset($_SESSION["loggedIn"])){
 		redirect();
 	} 
 	require_once("../includes/connection.php");
  	require_once("../includes/head1.php");
-	require_once("../functions/functions.php");	
 ?>
 <link rel="stylesheet" type="text/css" href="../css/create.css">
 <script type="text/javascript"></script>
@@ -21,12 +21,12 @@
 		<legend>Lil Detail About The File</legend>
 						
 		<div class="form-input">
-			<input type="text" name="topic" placeholder="What is The Topic Of The Content" class="signupforminput" value="<?php if(isset($_POST['topic'])) echo $_POST['topic']; ?>">
+			<input type="text" name="topic" placeholder="What is The Topic Of The Content" class="signupforminput" value="<?php if(isset($_POST['topic'])) echo $_POST['topic']; ?>" required>
 		</div>
 
 		<div class="form-input">
 			<label for="filecategory">Pick A Category</label>
-			<select class="signupforminput" id="filecategory" name="category">
+			<select class="signupforminput" id="filecategory" name="category" required>
 				<?php
 					if (isset($_GET['soln'])) {
 						echo "<option value=\"solution\" selected>Solution</option>";
@@ -45,7 +45,7 @@
 
 		<div class="form-input" >
 			<label for="fileupload">Select A File</label><br>
-			<input type="file" class="signupforminput" id="fileupload" name="fileupload">
+			<input type="file" class="signupforminput" id="fileupload" name="fileupload" required>
 		</div>
 			
 		<div class="form-input">

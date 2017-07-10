@@ -1,12 +1,11 @@
 <?php
 	session_start();
-	if(!isset($_SESSION["loggedIn"])){
+	require_once('../includes/connection.php');
+	// require_once('../includes/head1.php');
+	require_once('../functions/functions.php');if(!isset($_SESSION["loggedIn"])){
 		redirect();
 	} 
-	require_once('../includes/connection.php');
-	require_once('../includes/head1.php');
-	require_once('../functions/functions.php');
-	require_once('../includes/head2.php');
+	// require_once('../includes/head2.php');
 
 	$file_id = $_GET["file"];
 	$query = "SELECT solutions, more_info, file_name, uploader_id FROM file WHERE id = " . $file_id;
@@ -21,5 +20,5 @@
 	</div>
 
 <?php 
-	require_once('../includes/end.php');
+	// require_once('../includes/end.php');
 ?>

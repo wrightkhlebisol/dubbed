@@ -39,6 +39,8 @@
 	$query .= "FROM file ";
 	if (isset($_GET['type'])) {
 		$query .= "WHERE category = {$viewType} ";
+	}else{
+		$query .= "WHERE category != 'solution' ";
 	}
 	$query .= "ORDER BY id ";
 	$query .= "DESC";

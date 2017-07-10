@@ -94,3 +94,11 @@
 /*.solnButton > a:hover{
 	text-decoration: underline;
 }*/
+
+.optionPanel{
+	display: block;
+}
+
+.optionPanel>button{
+	height: 10px;
+}

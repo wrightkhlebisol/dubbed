@@ -41,19 +41,19 @@
 					<?php if(!empty($message)){ echo "<h1 id=\"notice\">" . $message . "</h1>";}else{echo "<h1>Welcome Home ! You have chosen to join an Elite community. <br> Let's set you up !</h1>";} // the message stored in message variable is displayed here?>
 					<form method="post" action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>" id="signupform" enctype="multipart/form-data">
 						<div class="form-input">
-							<input type="email" placeholder="What is Your E-mail Address" class="signupforminput" name="email" id="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>">
+							<input type="email" placeholder="What is Your E-mail Address" class="signupforminput" name="email" id="email" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>" required>
 						</div>
 						<div class="form-input">
-							<input type="text" placeholder="Which School are You From" class="signupforminput" name="school" id="school" value="<?php if(isset($_POST['school'])) echo $_POST['school']; ?>">
+							<input type="text" placeholder="Which School are You From" class="signupforminput" name="school" id="school" value="<?php if(isset($_POST['school'])) echo $_POST['school']; ?>" required>
 						</div>
 						<div class="form-input">
-							<input type="password" placeholder="Please Make a Secure Password" class="signupforminput" name="password1" id="password1" value="<?php if(isset($_POST['password1'])) echo $_POST['password1']; ?>">
+							<input type="password" placeholder="Please Make a Secure Password" class="signupforminput" name="password1" id="password1" value="<?php if(isset($_POST['password1'])) echo $_POST['password1']; ?>" required>
 						</div>
 						<div class="form-input">
-							<input type="password" placeholder="We hate to repeat things too, but can you please Re-enter Your Password" class="signupforminput" name="password2" id="password2" value="<?php if(isset($_POST['password2'])) echo $_POST['password2']; ?>">
+							<input type="password" placeholder="We hate to repeat things too, but can you please Re-enter Your Password" class="signupforminput" name="password2" id="password2" value="<?php if(isset($_POST['password2'])) echo $_POST['password2']; ?>" required>
 						</div>
 						<div class="form-input">
-							<input type="text" placeholder="What is Your Name" class="signupforminput" name="name" id="name" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>">
+							<input type="text" placeholder="What is Your Name" class="signupforminput" name="name" id="name" value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>" required>
 						</div>
 						
 							<input type="submit" value="BECOME ONE OF US" class="signupforminput" name="submit">

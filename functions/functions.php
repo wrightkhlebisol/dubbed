@@ -106,13 +106,40 @@
 							$resultSoln = mysqli_query($connection, $querySoln);
 							if (!$resultSoln) {
 								die("Database insert failed " . mysqli_error($connection));
-							}
+							}else{
+								$queryTotalPoint = "SELECT points ";
+								$queryTotalPoint .= "FROM users ";
+								$queryTotalPoint .= "WHERE id = $uploader";
+								$queryTotalPointQuery = mysqli_query($connection, $queryTotalPoint);
+								$queryTotalPointResult = mysqli_fetch_assoc($queryTotalPointQuery);
+								$newUserPoints = $queryTotalPointResult['points'] + 3;
+								$queryTotalPointInsert = "UPDATE users ";
+								$queryTotalPointInsert .= "SET points = $newUserPoints ";
+								$queryTotalPointInsert .= "WHERE id = $uploader";
+								$totalPointInsertResult = mysqli_query($connection, $queryTotalPointInsert);
+								if(!$totalPointInsertResult){
+									die("Couldn't Add Points " . mysqli_error($connection));
+								}else{
+									$totalSolnQuery = "SELECT * ";
+									$totalSolnQuery .= "FROM solution ";
+									$totalSolnQuery .= "WHERE file_id = $fileId";
+									$totalSoln = mysqli_num_rows($totalSolnResult = mysqli_query($connection, $totalSolnQuery));
+									$queryUpdateTotalSoln = "UPDATE file ";
+									$queryUpdateTotalSoln .= "SET solutions = $totalSoln ";
+									$queryUpdateTotalSoln .= "WHERE id = $fileId";
+									$updateTotalSolnResult = mysqli_query($connection, $queryUpdateTotalSoln);
+									if(!$updateTotalSolnResult){
+										die("Couldn't update solutions " . mysqli_error($connection));
+									}
+								}
+								
+							}							
 						}
 						$resultCreate = mysqli_query($connection, $queryCreate);
 						if (!$resultCreate) {
 							die("Database insert failed " . mysqli_error($connection));
 						}else{
-							header("Location: ../index.php?dins=1");
+							// header("Location: ../index.php?dins=1");
 						}
 					}else{
 						echo "<p class=\"alertMessages\">There was a problem uploading the file</p>";
